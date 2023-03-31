@@ -1,5 +1,5 @@
 import React from "react"
-import { Choix, Presentation, Resistances } from "./components"
+import { Presentation, Resistances } from "./components"
 
 const App = () => {
   return (
@@ -7,10 +7,9 @@ const App = () => {
       <div className="bg-cover bg-no-repeat bg-center bg-bg-elec">
         <Presentation />
       </div>
-      <div className="bg-resistances">
+      <div className="bg-[#03071e]">
         <Resistances />
-      </div>
-      
+      </div> 
     </>
   )
 }

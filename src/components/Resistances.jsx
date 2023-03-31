@@ -5,6 +5,11 @@ import { useEffect } from "react"
 import { updatePourcentage, updateMultiplier } from "../utils/functions"
 
 const Resistances = () => {
+
+    const isMobile = window.innerWidth <= 768;
+
+    console.log(isMobile);
+
     const rgbCouleurs=[
         "rgba(0, 0, 0, 1)",
         "rgba(165, 42, 42, 1)",
@@ -38,33 +43,59 @@ const Resistances = () => {
         newImage.src = resistance;
 
         let ohm = (valAnn1*10+valAnn2)*valAnn3;
-        console.log(anneau1);
 
         newImage.onload = () => {
-            ctx.drawImage(newImage, 0, 0, 700, 400);
+            if(!isMobile) {
+                ctx.drawImage(newImage, 0, 0, 700, 400);
 
-            ctx.fillStyle = anneau1;
-            ctx.fillRect(282,159,14,66);
-   
-            ctx.fillStyle=anneau2;
-            ctx.fillRect(309,159,14,66);
-   
-            ctx.fillStyle=anneau3;
-            ctx.fillRect(334,159,14,66);
-   
-            ctx.fillStyle=anneau4;
-            ctx.fillRect(358,159,14,66);
+                ctx.fillStyle = anneau1;
+                ctx.fillRect(282,159,14,66);
+       
+                ctx.fillStyle=anneau2;
+                ctx.fillRect(309,159,14,66);
+       
+                ctx.fillStyle=anneau3;
+                ctx.fillRect(334,159,14,66);
+       
+                ctx.fillStyle=anneau4;
+                ctx.fillRect(358,159,14,66);
 
-            ctx.fillStyle="#fff"
-            ctx.font = "20px Arial";
-            if(ohm<1000) 
-                ctx.fillText(ohm+" Ω ± "+valAnn4+"%", 300, 273);
-            else if(ohm>=1000 && ohm<1000000)
-                ctx.fillText(ohm/1000+" kΩ ± "+valAnn4+"%", 300, 273);
-            else if(ohm>=1000000 && ohm<1000000000)
-                ctx.fillText(ohm/1000000+" MΩ ± "+valAnn4+"%", 300, 273);
-            else
-                ctx.fillText(ohm/1000000000+" GΩ ± "+valAnn4+"%", 300, 273);
+                ctx.fillStyle="#fff"
+                ctx.font = "20px Arial";
+                if(ohm<1000) 
+                    ctx.fillText(ohm+" Ω ± "+valAnn4+"%", 300, 273);
+                else if(ohm>=1000 && ohm<1000000)
+                    ctx.fillText(ohm/1000+" kΩ ± "+valAnn4+"%", 300, 273);
+                else if(ohm>=1000000 && ohm<1000000000)
+                    ctx.fillText(ohm/1000000+" MΩ ± "+valAnn4+"%", 300, 273);
+                else
+                    ctx.fillText(ohm/1000000000+" GΩ ± "+valAnn4+"%", 300, 273);
+            } else {
+                ctx.drawImage(newImage, 0, 0, 300, 200);
+
+                ctx.fillStyle = anneau1;
+                ctx.fillRect(121,80,5,33);
+
+                ctx.fillStyle=anneau2;
+                ctx.fillRect(132,80,6,33);
+
+                ctx.fillStyle=anneau3;
+                ctx.fillRect(143,80,6,33);
+
+                ctx.fillStyle=anneau4;
+                ctx.fillRect(154,80,6,33);
+
+                ctx.fillStyle="#fff"
+                ctx.font = "16px Arial";
+                if(ohm<1000) 
+                    ctx.fillText(ohm+" Ω ± "+valAnn4+"%", 110, 150);
+                else if(ohm>=1000 && ohm<1000000)
+                    ctx.fillText(ohm/1000+" kΩ ± "+valAnn4+"%", 110, 150);
+                else if(ohm>=1000000 && ohm<1000000000)
+                    ctx.fillText(ohm/1000000+" MΩ ± "+valAnn4+"%", 110, 150);
+                else
+                    ctx.fillText(ohm/1000000000+" GΩ ± "+valAnn4+"%", 110, 150);
+            }    
         }
 
         elements.forEach(function(ele) {
@@ -82,34 +113,69 @@ const Resistances = () => {
         newImage.src = resistance;
 
         newImage.onload = () => {
-            ctx.drawImage(newImage, 0, 0, 700, 400);
+            if(!isMobile) {
+                ctx.drawImage(newImage, 0, 0, 700, 400);
 
-            ctx.fillStyle = anneau1;
-            ctx.fillRect(282,159,14,66);
-   
-            ctx.fillStyle=anneau2;
-            ctx.fillRect(309,159,14,66);
-   
-            ctx.fillStyle=anneau3;
-            ctx.fillRect(334,159,14,66);
-   
-            ctx.fillStyle=anneau4;
-            ctx.fillRect(358,159,14,66);
+                ctx.fillStyle = anneau1;
+                ctx.fillRect(282,159,14,66);
+       
+                ctx.fillStyle=anneau2;
+                ctx.fillRect(309,159,14,66);
+       
+                ctx.fillStyle=anneau3;
+                ctx.fillRect(334,159,14,66);
+       
+                ctx.fillStyle=anneau4;
+                ctx.fillRect(358,159,14,66);
+    
+                ctx.fillStyle="#fff"
+                ctx.font = "20px Arial";
+                ctx.fillText("110 Ω ± 1%", 300, 273);
+            } else {
+                ctx.drawImage(newImage, 0, 0, 300, 200);
 
-            ctx.fillStyle="#fff"
-            ctx.font = "20px Arial";
-            ctx.fillText("110 Ω ± 1%", 300, 273);
+                ctx.fillStyle = anneau1;
+                ctx.fillRect(121,80,5,33);
+    
+                ctx.fillStyle=anneau2;
+                ctx.fillRect(132,80,6,33);
+    
+                ctx.fillStyle=anneau3;
+                ctx.fillRect(143,80,6,33);
+    
+                ctx.fillStyle=anneau4;
+                ctx.fillRect(154,80,6,33);
+
+                ctx.fillStyle="#fff"
+                ctx.font = "16px Arial";
+                ctx.fillText("110 Ω ± 1%", 110, 150);
+            }
+            
         }
 
         var e = document.getElementById('resistance'),
         context = e.getContext('2d');
 
+        if(!isMobile) {
+            // pallete de couleur pour les anneaux
+            for(let a=0;a<4;a++) {
+                if(a==3) {
+                    for(let i=0;i<10;i++) {
+                        if(i!=0 && i!=3 && i!=4 && i!=9) {
+                            elements.push({
+                                colour: rgbCouleurs[i],
+                                width: 30,
+                                height: 20,
+                                top: top+40,
+                                left: left,
+                                indexx: i
+                            });
+                        }
 
-        // pallete de couleur pour les anneaux
-        for(let a=0;a<4;a++) {
-            if(a==3) {
-                for(let i=0;i<10;i++) {
-                    if(i!=0 && i!=3 && i!=4 && i!=9) {
+                        top+=40;
+                    }
+                } else {
+                    for(let i=0;i<10;i++) {
                         elements.push({
                             colour: rgbCouleurs[i],
                             width: 30,
@@ -118,29 +184,55 @@ const Resistances = () => {
                             left: left,
                             indexx: i
                         });
+                        top+=40;
                     }
-
-                    top+=40;
                 }
-            } else {
-                for(let i=0;i<10;i++) {
-                    elements.push({
-                        colour: rgbCouleurs[i],
-                        width: 30,
-                        height: 20,
-                        top: top+40,
-                        left: left,
-                        indexx: i
-                    });
-                    top+=40;
-                }
+                left+=140;
+                top=300;
             }
-            left+=140;
+            // reset des valeurs
             top=300;
+            left=100;
+        } else {
+            // pallete de couleur pour les anneaux
+            top=120;
+            left=40;
+            for(let a=0;a<4;a++) {
+                if(a==3) {
+                    for(let i=0;i<10;i++) {
+                        if(i!=0 && i!=3 && i!=4 && i!=9) {
+                            elements.push({
+                                colour: rgbCouleurs[i],
+                                width: 40,
+                                height: 20,
+                                top: top+40,
+                                left: left,
+                                indexx: i
+                            });
+                        }
+
+                        top+=40;
+                    }
+                } else {
+                    for(let i=0;i<10;i++) {
+                        elements.push({
+                            colour: rgbCouleurs[i],
+                            width: 40,
+                            height: 20,
+                            top: top+40,
+                            left: left,
+                            indexx: i
+                        });
+                        top+=40;
+                    }
+                }
+                left+=60;
+                top=120;
+            }
+            // reset des valeurs
+            top=120;
+            left=40;
         }
-        // reset des valeurs
-        top=300;
-        left=100;
 
         elements.forEach(function(ele) {
             context.fillStyle = ele.colour;
@@ -156,22 +248,40 @@ const Resistances = () => {
 
             elements.some(function(ele) {
                 if (y > ele.top && y < (ele.top + ele.height) && x > ele.left && x < (ele.left + ele.width)) {
-
-                    //1ere anneau
-                    if(x>70 && x<130) {
-                        anneau1=ele.colour;
-                        valAnn1=ele.indexx;
-                    } else if(x>210 && x< 270) { // 2eme anneau
-                        anneau2=ele.colour;
-                        valAnn2=ele.indexx;
-                    } else if(x>350 && x<410) { // 3eme anneau
-                        anneau3=ele.colour;
-                        valAnn3=updateMultiplier(ele.indexx);
-                    } else if(x>490 && x<550) { // 4eme anneau
-                        anneau4=ele.colour;
-                        
-                        valAnn4=updatePourcentage(ele.indexx);
+                    if(!isMobile) {
+                        //1ere anneau
+                        if(x>70 && x<130) {
+                            anneau1=ele.colour;
+                            valAnn1=ele.indexx;
+                        } else if(x>210 && x< 270) { // 2eme anneau
+                            anneau2=ele.colour;
+                            valAnn2=ele.indexx;
+                        } else if(x>350 && x<410) { // 3eme anneau
+                            anneau3=ele.colour;
+                            valAnn3=updateMultiplier(ele.indexx);
+                        } else if(x>490 && x<550) { // 4eme anneau
+                            anneau4=ele.colour;
+                            
+                            valAnn4=updatePourcentage(ele.indexx);
+                        }
+                    } else {
+                        //1ere anneau
+                        if(x>40 && x<90) {
+                            anneau1=ele.colour;
+                            valAnn1=ele.indexx;
+                        } else if(x>100 && x< 150) { // 2eme anneau
+                            anneau2=ele.colour;
+                            valAnn2=ele.indexx;
+                        } else if(x>160 && x<210) { // 3eme anneau
+                            anneau3=ele.colour;
+                            valAnn3=updateMultiplier(ele.indexx);
+                        } else if(x>220 && x<270) { // 4eme anneau
+                            anneau4=ele.colour;
+                            
+                            valAnn4=updatePourcentage(ele.indexx);
+                        }
                     }
+
                     const context = canvas.getContext('2d');
                     context.clearRect(0, 0, canvas.width, canvas.height);
                     
@@ -190,18 +300,35 @@ const Resistances = () => {
     // fin premier chargement
 
     // retour du composant
-    return (
-        <>
-            <div>
-                <div className="text-white">Resistances</div>
-                <canvas id="resistance" width="700" height="800px" className="m-auto border-4 border-indigo-600">
-                    Ton navigateur ne supporte pas les balises canvas.
-                </canvas>
-
-            </div>
-            
-        </>
-    )
+    if(!isMobile) {
+        return (
+            <>
+                <div>
+                    <div className="text-white font-poppins font-semibold text-[46px]">RESISTANCES.</div>
+                    <div className="text-[#d6d6d6] font-poppins text-[20px]">Trouver vos valeurs de résistances facilement</div>
+                    <canvas id="resistance" width="700" height="800px" className="m-auto cursor-pointer">
+                        Ton navigateur ne supporte pas les balises canvas.
+                    </canvas>
+    
+                </div>
+                
+            </>
+        )    
+    } else {
+        return (
+            <>
+                <div>
+                    <div className="text-white font-poppins font-semibold text-[46px]">RESISTANCES.</div>
+                    <div className="text-[#d6d6d6] font-poppins text-[20px]">Trouver vos valeurs de résistances facilement</div>
+                    <canvas id="resistance" width="300" height="600px" className="m-auto">
+                        Ton navigateur ne supporte pas les balises canvas.
+                    </canvas>
+    
+                </div>
+                
+            </>
+        )
+    }
 }
 
-export default SectionWrapper(Resistances,"")
+export default SectionWrapper(Resistances,"resistances")

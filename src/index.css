@@ -153,8 +153,3 @@
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
-
-.bg-resistances {
-  background: rgb(1,1,1);
-  background: linear-gradient(180deg, rgba(1,1,1,1) 0%, rgba(34,34,34,1) 30%);
-}
