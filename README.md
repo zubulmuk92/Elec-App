@@ -17,4 +17,4 @@ Cette liste sera souvent modifié.
 
 ## Demo
 
-www.elec-app-demo.netlify.app
+https://elec-app-demo.netlify.app/#resistances
