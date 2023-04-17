@@ -18,7 +18,7 @@ const Presentation = () => {
                 Bienvenu(e) sur <span className="text-[#faff00]">Elec'App</span>
                 <p className="text-[#e3e3e3] sm:text-[18px] text-[14px] sm:mt-20 mt-20 font-normal">Cette application permet de faciliter le travail en projet d'étudiants en génie électrique.</p>
             <div className="pt-[35vh]">
-                <a href="#resistances">
+                <a href="#wrapper">
                     <Lottie 
                         options={defaultOptions}
                         height={100}

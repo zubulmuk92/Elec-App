@@ -7,6 +7,8 @@ export function updatePourcentage(i) {
         case 6:valAnn4=0.25; break;
         case 7:valAnn4=0.1; break;
         case 8:valAnn4=0.05; break;
+        case 10:valAnn4=10; break;
+        case 11:valAnn4=5; break;
     }
 
     return valAnn4;
@@ -25,8 +27,8 @@ export function updateMultiplier(i) {
         case 7: valAnn3=10000000; break;
         case 8: valAnn3=100000000; break;
         case 9: valAnn3=1000000000; break;
-        case 10: valAnn3=0.1; break;
-        case 11: valAnn3=0.01; break;
+        case 10: valAnn3=0.01; break;
+        case 11: valAnn3=0.1; break;
     }
 
     return valAnn3;

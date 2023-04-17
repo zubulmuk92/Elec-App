@@ -7,9 +7,6 @@ import { updatePourcentage, updateMultiplier } from "../utils/functions"
 const Resistances = () => {
 
     const isMobile = window.innerWidth <= 768;
-
-    console.log(isMobile);
-
     const rgbCouleurs=[
         "rgba(0, 0, 0, 1)",
         "rgba(165, 42, 42, 1)",
@@ -32,7 +29,7 @@ const Resistances = () => {
     let valAnn4=1;
     let top=300;
     let left=100;
-    
+
     var elements = [];
 
     function updateCanvas() {
@@ -53,23 +50,35 @@ const Resistances = () => {
        
                 ctx.fillStyle=anneau2;
                 ctx.fillRect(309,159,14,66);
-       
-                ctx.fillStyle=anneau3;
-                ctx.fillRect(334,159,14,66);
-       
-                ctx.fillStyle=anneau4;
-                ctx.fillRect(358,159,14,66);
+                
+                if (valAnn3==0.1) {
+                    ctx.drawImage(orImage,334,159,14,66)
+                } else if (valAnn3==0.01) {
+                    ctx.drawImage(argentImage,334,159,14,66)
+                } else {
+                    ctx.fillStyle=anneau3;
+                    ctx.fillRect(334,159,14,66);
+                }
+
+                if (valAnn4==5) {
+                    ctx.drawImage(orImage,358,159,14,66)
+                } else if (valAnn4==10) {
+                    ctx.drawImage(argentImage,358,159,14,66)
+                } else {
+                    ctx.fillStyle=anneau4;
+                    ctx.fillRect(358,159,14,66);
+                }
 
                 ctx.fillStyle="#fff"
                 ctx.font = "20px Arial";
                 if(ohm<1000) 
-                    ctx.fillText(ohm+" Ω ± "+valAnn4+"%", 300, 273);
+                    ctx.fillText((ohm).toFixed(2)+" Ω ± "+valAnn4+"%", 300, 273);
                 else if(ohm>=1000 && ohm<1000000)
-                    ctx.fillText(ohm/1000+" kΩ ± "+valAnn4+"%", 300, 273);
+                    ctx.fillText((ohm/1000).toFixed(2)+" kΩ ± "+valAnn4+"%", 300, 273);
                 else if(ohm>=1000000 && ohm<1000000000)
-                    ctx.fillText(ohm/1000000+" MΩ ± "+valAnn4+"%", 300, 273);
+                    ctx.fillText((ohm/1000000).toFixed(2)+" MΩ ± "+valAnn4+"%", 300, 273);
                 else
-                    ctx.fillText(ohm/1000000000+" GΩ ± "+valAnn4+"%", 300, 273);
+                    ctx.fillText((ohm/1000000000).toFixed(2)+" GΩ ± "+valAnn4+"%", 300, 273);
             } else {
                 ctx.drawImage(newImage, 0, 0, 300, 200);
 
@@ -79,29 +88,57 @@ const Resistances = () => {
                 ctx.fillStyle=anneau2;
                 ctx.fillRect(132,80,6,33);
 
-                ctx.fillStyle=anneau3;
-                ctx.fillRect(143,80,6,33);
+                if (valAnn3==0.1) {
+                    ctx.drawImage(orImage,143,80,6,33)
+                } else if (valAnn3==0.01) {
+                    ctx.drawImage(argentImage,143,80,6,33)
+                } else {
+                    ctx.fillStyle=anneau3;
+                    ctx.fillRect(143,80,6,33);
+                }
 
-                ctx.fillStyle=anneau4;
-                ctx.fillRect(154,80,6,33);
+                if (valAnn4==5) {
+                    ctx.drawImage(orImage,154,80,6,33)
+                } else if (valAnn4==10) {
+                    ctx.drawImage(argentImage,154,80,6,33)
+                } else {
+                    ctx.fillStyle=anneau4;
+                    ctx.fillRect(154,80,6,33);
+                }
 
                 ctx.fillStyle="#fff"
                 ctx.font = "16px Arial";
                 if(ohm<1000) 
-                    ctx.fillText(ohm+" Ω ± "+valAnn4+"%", 110, 150);
+                    ctx.fillText((ohm).toFixed(2)+" Ω ± "+valAnn4+"%", 110, 150);
                 else if(ohm>=1000 && ohm<1000000)
-                    ctx.fillText(ohm/1000+" kΩ ± "+valAnn4+"%", 110, 150);
+                    ctx.fillText((ohm/1000).toFixed(2)+" kΩ ± "+valAnn4+"%", 110, 150);
                 else if(ohm>=1000000 && ohm<1000000000)
-                    ctx.fillText(ohm/1000000+" MΩ ± "+valAnn4+"%", 110, 150);
+                    ctx.fillText((ohm/1000000).toFixed(2)+" MΩ ± "+valAnn4+"%", 110, 150);
                 else
-                    ctx.fillText(ohm/1000000000+" GΩ ± "+valAnn4+"%", 110, 150);
+                    ctx.fillText((ohm/1000000000).toFixed(2)+" GΩ ± "+valAnn4+"%", 110, 150);
             }    
         }
 
-        elements.forEach(function(ele) {
-            ctx.fillStyle = ele.colour;
-            ctx.fillRect(ele.left, ele.top, ele.width, ele.height);
-        });
+        let orImage = new Image();
+        orImage.src=or;
+        let argentImage = new Image();
+        argentImage.src=argent;
+
+        argentImage.onload = () => {
+            elements.forEach(function(ele) {
+                if(ele.indexx==10 || ele.indexx==11) {
+                    if(ele.indexx==10) {
+                        ctx.drawImage(argentImage,ele.left, ele.top, ele.width, ele.height);
+                        
+                    } else {
+                        ctx.drawImage(orImage,ele.left, ele.top, ele.width, ele.height);
+                    }    
+                } else {
+                    ctx.fillStyle = ele.colour;
+                    ctx.fillRect(ele.left, ele.top, ele.width, ele.height);
+                }
+            });
+        }
     }
 
     // Premier chargement
@@ -171,9 +208,54 @@ const Resistances = () => {
                                 indexx: i
                             });
                         }
-
                         top+=40;
                     }
+                    elements.push({
+                        colour: "argent",
+                        width: 30,
+                        height: 20,
+                        top: top+40,
+                        left: left,
+                        indexx: 10
+                    });
+                    top+=40;
+                    elements.push({
+                        colour: "or",
+                        width: 30,
+                        height: 20,
+                        top: top+40,
+                        left: left,
+                        indexx: 11
+                    });
+                } else if(a==2) {
+                    for(let i=0;i<10;i++) {
+                        elements.push({
+                            colour: rgbCouleurs[i],
+                            width: 30,
+                            height: 20,
+                            top: top+40,
+                            left: left,
+                            indexx: i
+                        });
+                        top+=40;
+                    }
+                    elements.push({
+                        colour: "argent",
+                        width: 30,
+                        height: 20,
+                        top: top+40,
+                        left: left,
+                        indexx: 10
+                    });
+                    top+=40;
+                    elements.push({
+                        colour: "or",
+                        width: 30,
+                        height: 20,
+                        top: top+40,
+                        left: left,
+                        indexx: 11
+                    });
                 } else {
                     for(let i=0;i<10;i++) {
                         elements.push({
@@ -210,9 +292,25 @@ const Resistances = () => {
                                 indexx: i
                             });
                         }
-
                         top+=40;
                     }
+                    elements.push({
+                        colour: "argent",
+                        width: 40,
+                        height: 20,
+                        top: top+40,
+                        left: left,
+                        indexx: 10
+                    });
+                    top+=40;
+                    elements.push({
+                        colour: "or",
+                        width: 40,
+                        height: 20,
+                        top: top+40,
+                        left: left,
+                        indexx: 11
+                    });
                 } else {
                     for(let i=0;i<10;i++) {
                         elements.push({
@@ -234,10 +332,26 @@ const Resistances = () => {
             left=40;
         }
 
-        elements.forEach(function(ele) {
-            context.fillStyle = ele.colour;
-            context.fillRect(ele.left, ele.top, ele.width, ele.height);
-        });
+        let orImage = new Image();
+        orImage.src=or;
+        let argentImage = new Image();
+        argentImage.src=argent;
+
+        argentImage.onload = () => {
+            elements.forEach(function(ele) {
+                if(ele.indexx==10 || ele.indexx==11) {
+                    if(ele.indexx==10) {
+                        context.drawImage(argentImage,ele.left, ele.top, ele.width, ele.height);
+                        
+                    } else {
+                        context.drawImage(orImage,ele.left, ele.top, ele.width, ele.height);
+                    }    
+                } else {
+                    context.fillStyle = ele.colour;
+                    context.fillRect(ele.left, ele.top, ele.width, ele.height);
+                }
+            });
+        }
 
         function getMousePosition(canvas, event) {
             let rect = canvas.getBoundingClientRect();
@@ -331,4 +445,4 @@ const Resistances = () => {
     }
 }
 
-export default SectionWrapper(Resistances,"resistances")
+export default SectionWrapper(Resistances,"wrapper")

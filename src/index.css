@@ -153,3 +153,11 @@
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
+
+li
+{
+   display:block;
+   float:left;
+   width:200px; /* adjust */
+   height:80px; /* adjust */
+}
