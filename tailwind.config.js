@@ -13,7 +13,7 @@ export default {
         card: "0px 35px 120px -15px #211e35",
       },
       backgroundImage: {
-        "bg-elec": "url('/src/assets/background.jpg')",
+        "bg-elec": "url('/src/assets/background.png')",
       },
     },
   },
