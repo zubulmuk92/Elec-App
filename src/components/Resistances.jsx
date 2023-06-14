@@ -423,7 +423,8 @@ const Resistances = () => {
                     <canvas id="resistance" width="700" height="800px" className="m-auto cursor-pointer">
                         Ton navigateur ne supporte pas les balises canvas.
                     </canvas>
-    
+                    <div className="text-white font-poppins font-semibold text-[46px] mt-10">CALCULATEUR.</div>
+                    <div className="text-[#d6d6d6] font-poppins text-[20px]">Calculer la valeurs de vos composants ( série et parallèle )</div>
                 </div>
                 
             </>
@@ -437,7 +438,8 @@ const Resistances = () => {
                     <canvas id="resistance" width="300" height="600px" className="m-auto">
                         Ton navigateur ne supporte pas les balises canvas.
                     </canvas>
-    
+                    <div className="text-white font-poppins font-semibold text-[46px] mt-10">CALCULATEUR.</div>
+                    <div className="text-[#d6d6d6] font-poppins text-[20px]">Calculer la valeurs de vos composants ( série et parallèle )</div>
                 </div>
                 
             </>
