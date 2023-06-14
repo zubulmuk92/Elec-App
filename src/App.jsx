@@ -1,5 +1,5 @@
 import React from "react"
-import { Presentation, Resistances, Choix } from "./components"
+import { Presentation, Resistances, CalculsResistances, CalculsCondensateurs, RLCFiltre } from "./components"
 
 const App = () => {
   return (
@@ -11,7 +11,20 @@ const App = () => {
     
       <div className="bg-[#03071e]">
         <Resistances />
-      </div> 
+
+        <div className="container mx-auto">
+          <div className="flex flex-col md:flex-row">
+            <div className="md:w-1/2 md:pr-2">
+              <CalculsResistances />
+            </div>
+            <div className="md:w-1/2 md:pl-2">
+              <CalculsCondensateurs />
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <RLCFiltre />
     </>
   )
 }
