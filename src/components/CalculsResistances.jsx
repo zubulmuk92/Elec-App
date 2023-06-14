@@ -74,7 +74,7 @@ const CalculsResistances = () => {
                 type="number"
                 value={resistance.value}
                 onChange={(e) => updateResistanceValue(index, e.target.value)}
-                className="bg-gray-900 text-white px-4 py-2 rounded mr-4"
+                className="bg-gray-900 text-white px-4 py-2 rounded mr-4 w-28 md:w-60"
                 />
                 <select
                 value={resistance.unit}
