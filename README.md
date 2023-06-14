@@ -6,11 +6,11 @@ Fournir une application web simple d'utilisation et d'accès permettant aux étu
 ## Fait
 
 - Lecture d'une valeur de résistance par code couleur
+- Calcul de résistances/condensateurs ( série/parallèle )
 
 ## A faire
 Cette liste sera souvent modifié.
 
-- Calcul de résistances/condensateurs ( série/parallèle )
 - Calcul de filtre du premier ordre par rapport à des valeurs de composants ( circuit RLC )
 
 - Améliorer l'estétique de l'interface
