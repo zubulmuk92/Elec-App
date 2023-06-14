@@ -1,3 +1,5 @@
 export { default as Presentation } from "./Presentation"
 export { default as Resistances } from "./Resistances"
-export { default as Choix } from "./Choix"
+export { default as CalculsResistances } from "./CalculsResistances"
+export { default as CalculsCondensateurs } from "./CalculsCondensateurs"
+export { default as RLCFiltre } from "./RLCFiltre"
